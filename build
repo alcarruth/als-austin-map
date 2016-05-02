@@ -26,7 +26,7 @@ class Neighborhood_Map_App
 
         @index_template = new bn.HTML_Template('index', 'templates')
 
-        @index_js = new bn.HTML_Page('index_js', @index_template, {
+        @index_js = new bn.HTML_Page('index', @index_template, {
             styles: [ 
                 @style.css.ref()
             ]

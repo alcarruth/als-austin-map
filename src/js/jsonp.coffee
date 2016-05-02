@@ -14,10 +14,11 @@ ___dummy___ = 'ignore this !-)'
 class JSONP_Controller
 
     ### constructor ###
-    constructor: (@base_url, @cb_prefix='jsonp_callback_') ->
-        # seq_id is appended to the cb_prefix
+    constructor: (@base_url, @cb_prefix) ->
+        @cb_prefix = @cb_prefix || 'jsonp_callback_'
+        ### seq_id is appended to the cb_prefix ###
         @seq_id = 0
-        # collect the requests for later inspection (maybe?)
+        ### collect the requests for later inspection (maybe?) ###
         @requests = []
         
     ###*
@@ -31,11 +32,13 @@ class JSONP_Controller
         cb_name = @cb_prefix + @seq_id++
         
         ### add 'callback' to provided query object ###
-        obj.query['callback'] = cb_name
+        obj.query.callback = cb_name
+        #obj.query['callback'] = cb_name
 
         ### construct the url from the base_url and the query object ###
         url = @base_url
-        url += (key+'='+val for key, val of obj.query).join('&')
+        keys = Object.keys(obj.query)
+        url += (key+'='+obj.query[key] for key in keys).join('&')
         url = encodeURI(url)
 
         request = new JSONP_Request(obj.success, obj.error, obj.msec, cb_name, url)

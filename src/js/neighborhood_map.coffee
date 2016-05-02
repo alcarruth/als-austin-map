@@ -101,7 +101,7 @@ class Info_View
         @info_Window = new google.maps.InfoWindow( maxWidth: 250 )
         @info_Window.addListener('closeclick', @place.click)
         @place.show_info.subscribe(@display)
-        @wikipedia_Info = null
+        @wikipedia_Info = undefined
 
     ###*
      * method display_Info()
@@ -124,7 +124,7 @@ class Info_View
      * @param {Boolean} show_marker - to display or not display
     ###
     display_Wikipedia_Info: =>
-        if @wikipedia_Info?
+        if typeof(@wikipedia_Info) != 'undefined'
             @display_Info(@wikipedia_Info)
         else
             wikipedia.openSearch( {
