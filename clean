@@ -1,0 +1,6 @@
+rm -Rf dist/*
+mkdir -p dist
+mkdir -p dist/js
+mkdir -p dist/css
+mkdir -p dist/images
+

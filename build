@@ -1,0 +1,155 @@
+#!node_modules/.bin/coffee
+
+# build-nodes is my own 'task runner'
+# see src/tools/build-nodes
+# 
+bn = require('build-nodes')
+        
+class Neighborhood_Map_App
+
+    constructor: ->
+
+        @style = new bn.StyleSheet('style', 'css')
+        @menu_icon = new bn.SVG('hamburger_icon', 'images')
+        @search_icon = new bn.SVG('search_icon', 'images')
+
+        @knockout = new bn.JavaScript('knockout-3.3.0', 'js')
+        @coffee_script = new bn.JavaScript('coffee-script', 'js')
+        @google_maps_api = new bn.QueryURL('https://maps.googleapis.com/maps/api/js', {
+            key: 'AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo'
+            libraries: 'places'})
+
+        @jsonp = new bn.CoffeeScript('jsonp', 'js')
+        @wikipedia_api = new bn.CoffeeScript('wikipedia_api', 'js')
+        @austin_places = new bn.CoffeeScript('austin_places', 'js')
+        @neighborhood_map = new bn.CoffeeScript('neighborhood_map', 'js')
+
+        @index_template = new bn.HTML_Template('index', 'templates')
+
+        @index_js = new bn.HTML_Page('index_js', @index_template, {
+            styles: [ 
+                @style.css.ref()
+            ]
+            client_libs: [
+                @google_maps_api.js.ref()
+                @knockout.js.ref()
+            ]
+            client_scripts: [
+                @jsonp.js.ref()
+                @wikipedia_api.js.ref()
+                @austin_places.js.ref()
+                @neighborhood_map.js.ref()
+            ]
+            menu_icon: [
+                @menu_icon.svg.inline()
+            ]
+            search_icon: [
+                @search_icon.svg.inline()
+            ] 
+        })
+
+        @index_inline = new bn.HTML_Page('index_inline', @index_template, {
+            styles: [ 
+                @style.css.ref()
+            ]
+            client_libs: [
+                @google_maps_api.js.ref()
+                @knockout.js.ref()
+            ]
+            client_scripts: [
+                @jsonp.js.inline()
+                @wikipedia_api.js.inline()
+                @austin_places.js.inline()
+                @neighborhood_map.js.inline()
+            ]
+            menu_icon: [
+                @menu_icon.svg.inline()
+            ]
+            search_icon: [
+                @search_icon.svg.inline()
+            ] 
+        })
+
+        @index_min = new bn.HTML_Minified_Page('index_min', @index_template, {
+            styles: [ 
+                @style.css_min.inline()
+            ]
+            client_libs: [
+                @google_maps_api.js.ref()
+                @knockout.js.ref()
+            ]
+            client_scripts: [
+                @jsonp.js_min.inline()
+                @wikipedia_api.js_min.inline()
+                @austin_places.js_min.inline()
+                @neighborhood_map.js_min.inline()
+            ]
+            menu_icon: [
+                @menu_icon.svg.inline()
+            ]
+            search_icon: [
+                @search_icon.svg.inline()
+            ] 
+        })
+
+        @index_coffee = new bn.HTML_Page('index_coffee', @index_template, {
+            styles: [ 
+                @style.css.ref()
+            ]
+            client_libs: [
+                @google_maps_api.js.ref()
+                @knockout.js.ref()
+                @coffee_script.js.ref()
+            ]
+            client_scripts: [
+                @jsonp.coffee.ref()
+                @wikipedia_api.coffee.ref()
+                @austin_places.coffee.ref()
+                @neighborhood_map.coffee.ref()
+            ]
+            menu_icon: [
+                @menu_icon.svg.inline()
+            ]
+            search_icon: [
+                @search_icon.svg.inline()
+            ] 
+        })
+
+
+    make: (dest = 'dist') =>
+
+        tasks = [
+            @jsonp
+            @wikipedia_api
+            @austin_places
+            @neighborhood_map
+            @knockout
+            @coffee_script
+            @style
+            @menu_icon
+            @search_icon
+            @index_coffee
+            @index_js
+            @index_inline
+            @index_min
+            ]
+
+        start = Date.now()
+        mark = start
+        
+        for task in tasks
+            task.make('dist')
+            #prev = mark
+            #mark = Date.now()
+            #console.log('  time: ' + String(mark - prev) + ' ms\n')
+
+        console.log('\nBuild done in ' + String(Date.now()-start) + ' milliseconds.')
+
+app = new Neighborhood_Map_App()
+        
+module.exports = {
+    app: app
+}
+    
+if not module.parent
+    app.make()

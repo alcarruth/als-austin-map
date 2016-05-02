@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Austin Places Map">
+    <meta name="author" content="Al Carruth">
+    <title> Al's Austin Map </title>
+{{# styles }}    {{{ . }}}{{/ styles }}
+{{# client_libs }}    {{{ . }}}{{/ client_libs }}
+  </head>
+
+  <body>
+    <div id="neighborhood-map">
+
+      <div id="header"> 
+        <span id="title"> Al's Austin Map </span>
+        {{{ menu_icon }}}
+      </div>
+
+      <div id="menu-view"
+           data-bind="css: {'hidden': menu_View.hidden}"> 
+
+        <div id="search-box">
+          {{{ search_icon }}}
+          <input id="search-text-input"
+                 data-bind="textInput: search_Str">
+        </div>
+
+        <div id="menu-list"
+             data-bind="foreach: { data: places, as: 'place' }">
+          <div class="menu-list-item"
+               data-bind="text: name, visible: place.visible, click: place.click, css: {'selected': place.selected}">
+          </div>
+        </div>
+
+      </div>
+
+      <div id="info-view"> </div>
+      <div id="map-view"> </div>
+
+    </div>
+  </body>
+
+{{# client_scripts }}  {{{ . }}}{{/ client_scripts }}
+
+</html>

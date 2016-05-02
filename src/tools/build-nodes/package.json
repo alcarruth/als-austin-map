@@ -1,0 +1,23 @@
+{
+  "name": "build-nodes",
+  "version": "0.1.0",
+  "description": "Build tool and task runner for web app development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test_bn"
+  },
+  "author": "Al Carruth",
+  "license": "ISC",
+  "dependencies": {
+    "clean-css": "^3.4.12",
+    "coffee-script": "^1.10.0",
+    "fs": "0.0.2",
+    "htmlmin": "0.0.6",
+    "minify": "^2.0.8",
+    "mustache": "^2.2.1",
+    "uglify-js": "^2.6.2",
+    "js-beautify": "^1.6.2"
+  },
+  "devDependencies": {
+  }
+}

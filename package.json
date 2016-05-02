@@ -1,0 +1,19 @@
+{
+  "name": "frontend-p7-1-neighborhood-map",
+  "version": "1.0.0",
+  "description": "project for Udacity nanodegree",
+  "main": "build",
+  "dependencies": {},
+  "devDependencies": {
+    "build-nodes": "file:src/tools/build-nodes"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "zeus.armazilla.net:/opt/git/udacity/frontend-projects/frontend-p7-1-neighborhood-map"
+  },
+  "author": "Al Carruth",
+  "license": "ISC"
+}
