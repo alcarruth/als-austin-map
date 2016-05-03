@@ -41,17 +41,17 @@ class Wikipedia
      * a default timeout error handler for calls to method get() above
      * @param {Object} err - the error object
     ###
-    handle_timeout: (err) =>
+    handle_Timeout: (err) =>
         msg = "Wikipedia search results unavailable."
         console.log(msg)
         console.log(err)
 
-    ### method display() ###
+    ### method get() ###
     get: (obj, query) =>
-        request = @jsonp.make_request({
+        request = @jsonp.make_Request({
             query: query
             success: obj.success
-            error: obj.error || @handle_timeout
+            error: obj.error || @handle_Timeout
             msec: obj.msec || 3000
         })
         request.send()
@@ -79,7 +79,7 @@ class Wikipedia
         @get(obj, {
             action: 'opensearch'
             format: 'json'
-            search: obj.search_str
+            search: obj.search_Str
         })
 
 if window?

@@ -154,7 +154,7 @@ class Info_View
             @display_Info(@wikipedia_Info)
         else
             wikipedia.openSearch( {
-                search_str: @place.wikipedia_Title,
+                search_Str: @place.wikipedia_Title,
                 success: ((data) =>
                     @wikipedia_Info = {
                         title: data[1][0],
@@ -271,8 +271,8 @@ class Neighborhood_Map
 
 if window?
     wikipedia = new Wikipedia('Map of Austin places')
-    neighborhood_map = new Neighborhood_Map()
-    neighborhood_map.init(austin_places_json)
-    window.austin_places_json = austin_places_json
+    neighborhood_Map = new Neighborhood_Map()
+    neighborhood_Map.init(austin_Places_JSON)
+    #window.austin_places_json = austin_places_json
     window.wikipedia = wikipedia
-    window.neighborhood_map = neighborhood_map
+    window.neighborhood_Map = neighborhood_Map
