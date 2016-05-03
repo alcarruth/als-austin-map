@@ -92,11 +92,8 @@ unfortunately I still had trouble getting it to do what I wanted.
 
 So I tried writing a build script in CoffeeScript and had more success.  Eventually
 I separated the project specific build code from the more general stuff.  The results
-can be seen in the file 
-[`build`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/build)
-in the root directory, and the general code in
-[`src/tools/build-nodes`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/tools/build-nodes/index.coffee).  
-Perhaps I can break this out into its own repository.
+can be seen in the file [`build`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/build)
+in the root directory, and the general code in [`src/tools/build-nodes`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/tools/build-nodes/index.coffee). Perhaps I can break this out into its own repository.
 
 
 ### JSONP
@@ -115,4 +112,4 @@ actually works!)
 
 ### License
 
-[ISC](https://opensource.org/licenses/ISC)
+The code in this repository is licensed under the [ISC](https://opensource.org/licenses/ISC) license of the Open Source Initiative.
