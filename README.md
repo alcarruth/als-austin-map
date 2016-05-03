@@ -25,11 +25,10 @@ A simple server is included in the file `serve` which can be run as follows:
 $ ./serve
 ```
 
-Now point your browser to [`http://localhost:8080/index.html'].
+Now point your browser to [`http://localhost:8080/index.html'](http://localhost:8080/index.html).
 
 Also, to see different versions of the app which are produced by the
-build command, have a look at [`http://localhost:8080/index_coffee.html']
-and [`http://localhost:8080/index_min.html'].
+build command, have a look at [`http://localhost:8080/index_coffee.html'](http://localhost:8080/index_coffee.html) and [`http://localhost:8080/index_min.html'](http://localhost:8080/index_min.html).
 These demonstrate the flexibility of the build approach used.
 
 
