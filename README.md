@@ -1,14 +1,15 @@
 
 ## Udacity FEND Project 7 -1 Neighborhood Map
 
-### Pre-requisites
+### Quick Start
 
 This project requires the following programs to build from scratch:
 
  - [`nodejs`](https://nodejs.org/en/) - version 4.2.1 or greater.
  - [`npm`](https://www.npmjs.com/) - version 3.5.3 or greater.
 
-You can download and build the website as follows:
+If these requirements are satisfied, you can download and build the 
+Neighborhood Maps App as follows:
 
 ```
 $ git clone https://github.com/alcarruth/frontend-p7-1-neighborhood-map
@@ -24,7 +25,12 @@ A simple server is included in the file `serve` which can be run as follows:
 $ ./serve
 ```
 
-Now point your browser to `http://localhost:8080/'.
+Now point your browser to [`http://localhost:8080/index.html'].
+
+Also, to see different versions of the app which are produced by the
+build command, have a look at [`http://localhost:8080/index_coffee.html']
+and [`http://localhost:8080/index_min.html'].
+These demonstrate the flexibility of the build approach used.
 
 
 ### Project Overview and Usage
