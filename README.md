@@ -14,17 +14,18 @@ You can download and build the website as follows:
 $ git clone https://github.com/alcarruth/frontend-p7-1-neighborhood-map
 $ cd frontend-p7-1-neighborhood-map
 $ npm install
-$ ./clean
 $ ./build
 ```
 
 This will build the project files and install them in the `dist` subdirectory.
-Now fire up a server and point your browser to `dist/index.html`:
+A simple server is included in the file `serve` which can be run as follows:
 
 ```
-$ ./serve &
-$ google-chrome http://localhost:8080/index.html
+$ ./serve
 ```
+
+Now point your browser to `http://localhost:8080/'.
+
 
 ### Project Overview and Usage
 

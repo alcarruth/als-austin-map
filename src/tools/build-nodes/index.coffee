@@ -20,7 +20,7 @@
  *  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ###
 
-fs = require('fs')
+fs = require('fs-extra')
 coffee = require('coffee-script')
 uglify_js = require('uglify-js')
 minify = require('minify')
