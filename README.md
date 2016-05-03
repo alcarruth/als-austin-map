@@ -23,7 +23,7 @@ Now fire up a server and point your browser to `dist/index.html`:
 
 ```
 $ ./serve &
-$ chrome http://localhost:8080/index.html
+$ google-chrome http://localhost:8080/index.html
 ```
 
 ### Project Overview and Usage
