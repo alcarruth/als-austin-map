@@ -5,8 +5,8 @@
 
 This project requires the following programs to build from scratch:
 
- - `node` at least v4.2.1
- - `npm`  at least v3.5.3
+ - [`nodejs`](https://nodejs.org/en/) - version 4.2.1 or greater.
+ - [`npm`](https://www.npmjs.com/) - version 3.5.3 or greater.
 
 You can download and build the website as follows:
 
@@ -109,6 +109,9 @@ So, I rolled my own, object-oriented, solution which can be found in
 I believe it to be simple, general and intelligible.  (And now I understand how JSONP
 actually works!)
 
+### Knockout
+
+### Architecture
 
 ### License
 
