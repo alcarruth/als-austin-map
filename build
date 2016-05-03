@@ -121,7 +121,7 @@ class Neighborhood_Map_App
             styles: [ 
                 @style.css.ref()
             ]
-            client_libs: [
+            client_libs: [ 
                 @google_maps_api.js.ref()
                 @knockout.js.ref()
                 @coffee_script.js.ref()
@@ -167,13 +167,9 @@ class Neighborhood_Map_App
             ]
 
         start = Date.now()
-        mark = start
         
         for task in tasks
             task.make('dist')
-            #prev = mark
-            #mark = Date.now()
-            #console.log('  time: ' + String(mark - prev) + ' ms\n')
 
         console.log('\nBuild done in ' + String(Date.now()-start) + ' milliseconds.')
 

@@ -121,7 +121,14 @@ class Info_View
         @info_Window.addListener('closeclick', @place.click)
         @place.show_info.subscribe(@display)
         @wikipedia_Info = undefined
-
+        s = '<span class="error-msg">'
+        s += 'Wikipedia is currently unavailable.'
+        s += '</span> <br>' +
+        s += '<span class="error-msg"> Please try again later. </span>'
+        s += 'Please try again later.'
+        s += '</span>'
+        @error_Msg += s
+        
     ###*
      * method display_Info()
      * helper function for method display_Wikipedia_Info()
@@ -156,12 +163,9 @@ class Info_View
                     }
                     @display_Info(@wikipedia_Info)),
                 error: (=>
-                    error_Msg = '' +
-                        '<span class="error-msg"> Wikipedia is currently unavailable. </span> <br>' +
-                        '<span class="error-msg"> Please try again later. </span>'
                     @display_Info({
                         title: @place.name(),
-                        description: error_Msg,
+                        description: @error_Msg,
                         url: "https://en.wikipedia.org/"}))
                 })
 

@@ -52,7 +52,6 @@ class JSONP_Controller
         
         ### add 'callback' to provided query object ###
         obj.query.callback = cb_name
-        #obj.query['callback'] = cb_name
 
         ### construct the url from the base_url and the query object ###
         url = @base_url
