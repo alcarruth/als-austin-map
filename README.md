@@ -19,8 +19,12 @@ $ ./build
 ```
 
 This will build the project files and install them in the `dist` subdirectory.
-Now fire up a server (beyond the scope of this front-end project) and point
-your browser to `dist/index.html`
+Now fire up a server and point your browser to `dist/index.html`:
+
+```
+$ ./serve &
+$ chrome http://localhost:8080/index.html
+```
 
 ### Project Overview and Usage
 
