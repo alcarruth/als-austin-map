@@ -23,6 +23,8 @@
  *  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ###
 
+fs = require('fs-extra')
+
 # build-nodes is my own 'task runner'
 # see src/tools/build-nodes
 # 
@@ -139,6 +141,13 @@ class Neighborhood_Map_App
         })
 
 
+    clean: (dest = 'dist') =>
+        fs.removeSync(dest)
+        fs.mkdirsSync(dest + '/js')
+        fs.mkdirsSync(dest + '/css')
+        fs.mkdirsSync(dest + '/images')
+
+
     make: (dest = 'dist') =>
 
         tasks = [
@@ -168,6 +177,7 @@ class Neighborhood_Map_App
 
         console.log('\nBuild done in ' + String(Date.now()-start) + ' milliseconds.')
 
+    
 app = new Neighborhood_Map_App()
         
 module.exports = {
@@ -175,4 +185,5 @@ module.exports = {
 }
     
 if not module.parent
+    app.clean()
     app.make()
