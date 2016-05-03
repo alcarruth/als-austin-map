@@ -150,6 +150,8 @@ class Neighborhood_Map_App
 
     make: (dest = 'dist') =>
 
+        fs.copySync('src/images/favicon.ico', dest + '/images/favicon.ico')
+        
         tasks = [
             @jsonp
             @wikipedia_api
