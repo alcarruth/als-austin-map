@@ -25,8 +25,10 @@ your browser to `dist/index.html`
 ### Project Overview and Usage
 
 The title for the website is "Al's Austin Map".  It starts with a list of
-about 20 locations in Austin, TX (the model) and utilizes the google maps api
-and the wikipedia api to display markers for the locations on the map.  A
+about 20 locations in Austin, TX (the model) and utilizes the 
+[Google Maps API](https://developers.google.com/maps/)
+and the [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page)
+to display markers for the locations on the map.  A
 menu interface is also provided which provides a clickable list of the locations.
 
 Clicking on either a marker or the menu item for a location will have exactly
@@ -81,18 +83,20 @@ some with inlined [images|script|css] and some with references or links to those
 resources.  Likewise, I wanted the flexibility to generate pretty
 or minified [images|scripts|css].  
 
-I tried gulp but found it too 'linear' to easily combine two previously computed
-dependencies to produce a new target.  And you have to do some song and dance
-just to compute two things sequentially.  Really?  This ability has been a feature 
-of programming languages since day one.
+I tried [gulp](http://gulpjs.com/) but found it too 'linear' to easily 
+combine two previously computed dependencies to produce a new target.  
+And you have to do some song and dance just to compute two things sequentially. 
+Really?  This ability has been a feature of programming languages since day one.
+So I tried [grunt](http://gruntjs.com/) with a little more success, but 
+unfortunately I still had trouble getting it to do what I wanted.
 
-So I tried grunt.  Well grunt's a little better, but unfortunately I still had
-trouble getting it to do what I wanted.
-
-So I tried writing a build script in Coffeescript and had more success.  Eventually
+So I tried writing a build script in CoffeeScript and had more success.  Eventually
 I separated the project specific build code from the more general stuff.  The results
-can be seen in the file `build` in the root directory, and the general code in
-`src/tools/build-nodes`.  Perhaps I can break this out into its own repository.
+can be seen in the file 
+[`build`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/build)
+in the root directory, and the general code in
+[`src/tools/build-nodes`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/tools/build-nodes/index.coffee).  
+Perhaps I can break this out into its own repository.
 
 
 ### JSONP
@@ -103,7 +107,8 @@ at first I solved the problem by using jQuery's `$.ajax` function and setting
 the data type to 'jsonp'.  This works great but jQuery is not a small library
 and I didn't feel right loading it just for this one function.
 
-So, I rolled my own, object-oriented, solution which can be found in `source/js/jsonp.coffee`
+So, I rolled my own, object-oriented, solution which can be found in 
+[`source/js/jsonp.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/jsonp.coffee)
 I believe it to be simple, general and intelligible.  (And now I understand how JSONP
 actually works!)
 
