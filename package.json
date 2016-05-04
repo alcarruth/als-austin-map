@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "build-nodes": "file:src/tools/build-nodes",
+    "coffee-script": "^1.10.0",
     "connect": "^3.4.1",
     "fs-extra": "^0.30.0",
     "serve-static": "^1.10.2"

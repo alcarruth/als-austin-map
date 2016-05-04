@@ -15,7 +15,7 @@ Neighborhood Maps App as follows:
 $ git clone https://github.com/alcarruth/frontend-p7-1-neighborhood-map
 $ cd frontend-p7-1-neighborhood-map
 $ npm install
-$ ./build
+$ node src/tools/build.js
 ```
 
 This will build the project files and install them in the `dist`
@@ -23,7 +23,7 @@ subdirectory.  A simple server is included in the file `serve` which
 can be run as follows:
 
 ```
-$ ./serve
+$ node src/tools/serve.js
 ```
 
 Now point your browser to

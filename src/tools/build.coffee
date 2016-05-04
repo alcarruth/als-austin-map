@@ -147,6 +147,11 @@ class Neighborhood_Map_App
         fs.mkdirsSync(dest + '/css')
         fs.mkdirsSync(dest + '/images')
 
+    serve: (dir = 'dist', port = '8080') =>
+        connect = require('connect')
+        serveStatic = require('serve-static')
+        connect().use(serveStatic(dir)).listen(port, ->
+            console.log('Server running on ' + String(8080) + '...'))
 
     make: (dest = 'dist') =>
 
