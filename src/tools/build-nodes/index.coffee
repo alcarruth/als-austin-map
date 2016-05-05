@@ -33,6 +33,12 @@ beautify_comments = (->
     re = new RegExp('\\*/\n+','gm')
     (s) -> s.replace(re, '*/\n'))()
 
+###
+ * TODO: How much of the Udacity Style Guide compliance
+ *       might I be able to automate here?
+###
+
+
 beautify = {
     js: (x)-> beautify_comments(js_beautify(x))
     min_js: (x)->x
@@ -51,6 +57,13 @@ minify = {
     coffee: (x)->x
     svg: (x)->x
 }
+
+###
+ * TODO:
+ * I need some utitlity element tag functions here that can automate
+ * properties, e.g. 'async' property for a <script> tag
+###
+
 
 ### Simple object render ###
 ###*
@@ -203,6 +216,8 @@ class CoffeeScript
     make: (dest = 'dist/') =>
         @coffee.make(dest)
         @js.make(dest)
+        path = [@dir, '/', @name, '.js'].join('')
+        fs.copySync(dest + path, 'src/' + path
         @js_min.make(dest)
 
 
@@ -220,12 +235,33 @@ class JavaScript
     ### constructor() ###
     constructor: (@name, @dir) ->
         @js = new Source(@name, @dir, 'js', 'min_js')
-        #@js_min = new Apply(@name, minify_js, @js, @dir, 'min.js', 'js')
+        @js_min = new Apply(@name, minify_js, @js, @dir, 'min.js', 'js')
 
     ### method make() ###
     make: (dest = 'dist/') =>
         @js.make(dest)
-        #@js_min.make(dest)
+        fs.copySync(dest + @dir + @name + '.'
+        @js_min.make(dest)
+
+
+### Class JavaScriptLib ###
+###*
+ * A JavaScriptLib instance contains one caching node
+ * @constructor
+ * @param {string} name - the node's base name
+ * @param {string} dir - the file's directory
+ * @method {function} make - make both targets
+###
+class JavaScriptLib
+
+    ### constructor() ###
+    constructor: (@name, @dir) ->
+        @js = new Source(@name, @dir, 'js', 'min_js')
+
+    ### method make() ###
+    make: (dest = 'dist/') =>
+        @js.make(dest)
+
 
 
 ### Class StyleSheet ###
@@ -279,8 +315,18 @@ class SVG
 class QueryURL
 
     ### constructor() ###
-    constructor: (@base_url, @query={}) ->
-        @js = { ref: => render.js.ref(@get()) }
+    constructor: (@base_url, @query, @options) ->
+        @query = @query || {}
+        @options = @options || {}
+        @js = { ref: =>
+            obj = (k: v for k,v of @options)
+            obj.src = @get()
+            s = '<script'
+            for k,v of obj
+                s += ' ' + String(k) + '="' + String(v) + '"' 
+            s += '> </script>\n'
+            return s
+        }
         
     ### method get() ###
     get: =>

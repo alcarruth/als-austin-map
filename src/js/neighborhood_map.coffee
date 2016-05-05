@@ -54,14 +54,27 @@ class Map_View
 
     ### constructor ###
     constructor: (@app) ->
-        @key = "AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo"
         @map_Element = document.getElementById('map-view')
+        @gm_request = @app.google_Maps.get({
+            query: { libraries: 'places' }
+            success: @init
+            error: @error
+            msec: 3000
+        })
+
+    init: =>
         @map = new google.maps.Map( @map_Element, {
             center: { lat: 30.2712406, lng: -97.7555901 }, 
             scrollwheel: true,
             zoom: 13,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            callback: @error
         })
+        @app.map_Ready()
+            
+    error: (err) =>
+        window.alert("Google Maps is currently unavailable")
+
 
 ### Class Marker_View ###
 ###*
@@ -77,7 +90,6 @@ class Marker_View
 
     ### constructor ###
     constructor: (@place, @map_View) ->
-
         @marker = new google.maps.Marker({
             position: @place.loc,
             optimized: false,
@@ -117,31 +129,26 @@ class Info_View
 
     ### constructor ###
     constructor: (@place, @map_View, @marker_View) ->
+        @wikipedia_Info = undefined
+        s = '<span class="error-msg"> Wikipedia is currently unavailable. </span> <br>'
+        @error_Msg = s + '<span class="error-msg"> Please try again later. </span>'
         @info_Window = new google.maps.InfoWindow( maxWidth: 250 )
         @info_Window.addListener('closeclick', @place.click)
         @place.show_info.subscribe(@display)
-        @wikipedia_Info = undefined
-        s = '<span class="error-msg">'
-        s += 'Wikipedia is currently unavailable.'
-        s += '</span> <br>' +
-        s += '<span class="error-msg"> Please try again later. </span>'
-        s += 'Please try again later.'
-        s += '</span>'
-        @error_Msg += s
-        
+
     ###*
      * method display_Info()
      * helper function for method display_Wikipedia_Info()
      * @param {Object} obj - contains title, description and url
     ###
     display_Info: (obj) =>
-        content = '' +
+        s = '' +
             '<div class="info-window">' +
             '<h1 class="info-window-h1">' + obj.title + '</h1>' +
-            '<p class="info-window-p">' + obj.description + '</p>' +
-            '<a href="' + obj.url + '" target="_blank"> Wikipedia </a>' + 
+            '<p class="info-window-p">' + obj.description + '</p>' + 
+            '<a href="' + obj.url + '" target="_blank"> Wikipedia </a>' +
             '</div>'
-        @info_Window.setContent(content)
+        @info_Window.setContent(s)
         @info_Window.open(@map_View.map, @marker_View.marker)
 
     ###*
@@ -153,7 +160,7 @@ class Info_View
         if typeof(@wikipedia_Info) != 'undefined'
             @display_Info(@wikipedia_Info)
         else
-            wikipedia.openSearch( {
+            @place.app.wikipedia.openSearch( {
                 search_Str: @place.wikipedia_Title,
                 success: ((data) =>
                     @wikipedia_Info = {
@@ -200,10 +207,13 @@ class Place
         @hidden = ko.computed(=> @state() == 0)
         @visible = ko.computed(=> @state() > 0)
         @selected = ko.computed(=> @state() > 1)
-        @show_info = ko.computed(=> @state() > 2)
+        #@show_info = ko.computed(=> @state() > 2)
+        @show_info = ko.computed(=> @state() > 1)
+
+    map_Ready: =>
         @marker_View = new Marker_View(this, @app.map_View)
         @info_View = new Info_View(this, @app.map_View, @marker_View)
-
+        
     ###*
      * method click() handles all clicks whether on the menu items or
      * on the map markers and cycles through the states appropriately
@@ -216,7 +226,8 @@ class Place
                 place.state(1)
                 
         ### change to next state ###
-        @state([1,2,3,2][@state()])
+        #@state([1,2,3,2][@state()])
+        @state([1,2,1][@state()])
 
         ### hide the menu after selection when in cell phone mode. ###
         if window.innerWidth < 700
@@ -242,6 +253,8 @@ class Neighborhood_Map
 
     ### constructor ###
     constructor: ->
+        @wikipedia = new Wikipedia('Map of Austin places')
+        @google_Maps = new Google_Maps("AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo")
         @places = ko.observableArray([])
         @menu_View = new Menu_View(this)
         @map_View = new Map_View(this)
@@ -250,6 +263,13 @@ class Neighborhood_Map
         @search_Str.subscribe(@search)
         ko.applyBindings( this, @app_Element)
 
+    ###*
+     * method map_Ready
+    ###
+    map_Ready: =>
+        for place in @places()
+            place.map_Ready()
+            
     ###*
      * method init
      * @param {JSON} places_JSON - a json string representing an array of simple place objects
@@ -270,9 +290,7 @@ class Neighborhood_Map
 
 
 if window?
-    wikipedia = new Wikipedia('Map of Austin places')
+    
     neighborhood_Map = new Neighborhood_Map()
     neighborhood_Map.init(austin_Places_JSON)
-    #window.austin_places_json = austin_places_json
-    window.wikipedia = wikipedia
     window.neighborhood_Map = neighborhood_Map

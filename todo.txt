@@ -1,0 +1,10 @@
+
+async calls to google maps api
+
+add toLowercase in the css post processor
+
+can I automate the Udacity style guide?
+
+use class not id for styling
+
+use only lowercase for colors.

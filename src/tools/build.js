@@ -42,10 +42,6 @@
       this.search_icon = new bn.SVG('search_icon', 'images');
       this.knockout = new bn.JavaScript('knockout-3.3.0', 'js');
       this.coffee_script = new bn.JavaScript('coffee-script', 'js');
-      this.google_maps_api = new bn.QueryURL('https://maps.googleapis.com/maps/api/js', {
-        key: 'AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo',
-        libraries: 'places'
-      });
       this.jsonp = new bn.CoffeeScript('jsonp', 'js');
       this.wikipedia_api = new bn.CoffeeScript('wikipedia_api', 'js');
       this.austin_places = new bn.CoffeeScript('austin_places', 'js');

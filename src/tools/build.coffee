@@ -40,11 +40,9 @@ class Neighborhood_Map_App
 
         @knockout = new bn.JavaScript('knockout-3.3.0', 'js')
         @coffee_script = new bn.JavaScript('coffee-script', 'js')
-        @google_maps_api = new bn.QueryURL('https://maps.googleapis.com/maps/api/js', {
-            key: 'AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo'
-            libraries: 'places'})
-
+                
         @jsonp = new bn.CoffeeScript('jsonp', 'js')
+        @google_maps_api = new bn.CoffeeScript('google_maps_api', 'js')
         @wikipedia_api = new bn.CoffeeScript('wikipedia_api', 'js')
         @austin_places = new bn.CoffeeScript('austin_places', 'js')
         @neighborhood_map = new bn.CoffeeScript('neighborhood_map', 'js')
@@ -56,12 +54,12 @@ class Neighborhood_Map_App
                 @style.css.ref()
             ]
             client_libs: [
-                @google_maps_api.js.ref()
                 @knockout.js.ref()
             ]
             client_scripts: [
                 @jsonp.js.ref()
                 @wikipedia_api.js.ref()
+                @google_maps_api.js.ref()
                 @austin_places.js.ref()
                 @neighborhood_map.js.ref()
             ]
@@ -78,12 +76,12 @@ class Neighborhood_Map_App
                 @style.css.ref()
             ]
             client_libs: [
-                @google_maps_api.js.ref()
                 @knockout.js.ref()
             ]
             client_scripts: [
                 @jsonp.js.inline()
                 @wikipedia_api.js.inline()
+                @google_maps_api.js.inline()
                 @austin_places.js.inline()
                 @neighborhood_map.js.inline()
             ]
@@ -100,12 +98,12 @@ class Neighborhood_Map_App
                 @style.css_min.inline()
             ]
             client_libs: [
-                @google_maps_api.js.ref()
                 @knockout.js.ref()
             ]
             client_scripts: [
                 @jsonp.js_min.inline()
                 @wikipedia_api.js_min.inline()
+                @google_maps_api.js.inline()
                 @austin_places.js_min.inline()
                 @neighborhood_map.js_min.inline()
             ]
@@ -122,7 +120,6 @@ class Neighborhood_Map_App
                 @style.css.ref()
             ]
             client_libs: [ 
-                @google_maps_api.js.ref()
                 @knockout.js.ref()
                 @coffee_script.js.ref()
             ]
@@ -139,7 +136,6 @@ class Neighborhood_Map_App
                 @search_icon.svg.inline()
             ] 
         })
-
 
     clean: (dest = 'dist') =>
         fs.removeSync(dest)
@@ -160,6 +156,7 @@ class Neighborhood_Map_App
         tasks = [
             @jsonp
             @wikipedia_api
+            @google_maps_api
             @austin_places
             @neighborhood_map
             @knockout

@@ -1,0 +1,267 @@
+ 
+Requires Changes
+
+2 SPECIFICATIONS REQUIRE CHANGES
+
+Interface Design
+-----------------
+
+  - All application components render on-screen in a responsive manner.
+
+    Good job with initial rendering!
+
+  - All application components are usable across modern desktop, tablet, and phone browsers.
+
+    Good job with mobile devices! Excellent hamburger menu implementation!
+
+App Functionality
+-----------------
+
+  - Includes a text input field that filters the map markers and list
+    items to locations matching the text input. Filter function runs
+    error-free.
+
+    Good job with filtering!
+
+    As further improvements you can implement for example keyboard
+    shortcuts, autocomplete functionality, filtering of multiple
+    fields, etc.
+
+    For example a little bit about geolocation autocomplete:
+
+    https://developers.google.com/maps/documentation/javascript/places-autocomplete
+
+    Or, if you are not interested in geolocations autocomple, you can
+    use one of these libraries on predefined locations, for example:
+
+    https://github.com/LeaVerou/awesomplete
+    https://github.com/tombolaltd/awesomplete
+    https://jqueryui.com/autocomplete/
+    https://github.com/rniemeyer/knockout-jqAutocomplete
+    http://cameron-verhelst.be/blog/2014/04/20/knockoutjs-autocomplete/
+
+    Search by multiple fields:
+
+    https://github.com/raheelshan/knockout-search/
+    http://stackoverflow.com/questions/12014128/using-knockout-to-filter-viewmodel-data-using-multiple-fields-columns-and-contro
+    http://jsfiddle.net/qTb5Q/14/
+
+    Shortcut Keys
+
+    https://bitbucket.org/mattbrailsford/knockout.hotkeys
+    http://www.theoutfield.net/blog/2012/02/introducing-knockout-hotkeys
+
+  - A list-view of location names is provided which displays all locations
+    by default, and displays the filtered subset of locations when a
+    filter is applied.
+
+  - Clicking a location on the list displays unique information about
+    the location, and animates its associated map marker
+    (e.g. bouncing, color change.)
+
+  - List functionality is responsive and runs error free.
+
+    Good job!
+
+    Two clicks is not intuitive decision. To improve usability try to
+    refactor you code to show info after the first one.
+
+
+    Map displays all location markers by default, and displays the
+    filtered subset of location markers when a filter is applied.
+
+    Clicking a marker displays unique information about a location in
+    either an infoWindow or DOM element.
+
+  - Markers should animate when clicked (e.g. bouncing, color change.)
+
+    The same suggestion as above.
+
+App Architecture
+-----------------
+
+  - Code is properly separated based upon Knockout best practices
+    (follow an MVVM pattern, avoid updating the DOM manually with
+    jQuery or JS, use observables rather than forcing refreshes
+    manually, etc). Knockout should not be used to handle the Google
+    Map API.
+
+  - There are at least 5 locations hard-coded in the model.
+
+Asynchronous Data Usage
+-------------------------
+
+  - Application utilizes the Google Maps API and at least one
+    non-Google third-party API. Refer to this documentation
+
+  - All data requests are retrieved in an asynchronous manner.
+
+    Good job with Wikipedia API!
+
+   The google maps API should be loaded asynchronously as well.
+
+   Excellent tutorial from Google you can find here:
+
+   https://developers.google.com/maps/documentation/javascript/tutorial
+
+   You have to add the async and defer attributes to the <script> tag:
+
+   <script async defer src="..."></script>
+
+   Here are more info about async and defer attributes:
+
+   http://stackoverflow.com/questions/10808109/script-tag-async-defer
+   http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
+   http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/
+
+   Also a callback function should be added to the query - it will be
+   executed when the google maps api is successfully loaded.
+
+   As a good practice error handling for any asynchronous call should be
+   implemented as well. Example: Your HTML:
+
+   <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" 
+      onerror="errorHandling()">        
+
+   Your JS:
+
+   function initMap() {
+     // this function will be called when the google maps api is loaded
+   }
+
+   function errorHandling() {
+     // this function will be called when the google maps api is failed to load
+   }
+
+   You can also investigate awesome discussion on Udacity forum:
+   https://discussions.udacity.com/t/handling-google-maps-in-async-and-fallback/
+
+   Data requests that fail are handled gracefully using common
+   fallback techniques (i.e. AJAX error or fail methods). 'Gracefully'
+   means the user isn’t left wondering why a component isn’t
+   working. If an API doesn’t load there should be some visible
+   indication on the page (an alert box is ok) that it didn’t
+   load. Note: You do not need to handle cases where the user goes
+   offline.
+
+   As mentioned above error handling should be implemented for Google Map API.
+
+Location Details Functionality
+----------------------------------
+
+  - Functionality providing additional data about a location is
+    provided and sourced from a 3rd party API. Information can be
+    provided either in the marker’s infoWindow, or in an HTML element
+    in the DOM (a sidebar, the list view, etc.)
+
+  - Provide attribution for the source of additional data. For
+    example, if using Foursquare, indicate somewhere in your UI and in
+    your README that you are using Foursquare data.
+
+Application runs errors free.
+------------------------------
+
+  - Functionality is presented in a usable and responsive manner.
+
+Documentation
+--------------
+
+  - A README file is included detailing all steps required to
+    successfully run the application.  (you may already know this if I
+    reviewed one of your previous projects)
+
+    If you need some ideas about what or how to write a better README
+    file in future projects, you can find suggestions in the following
+    posts:
+
+    https://github.com/matiassingers/awesome-readme
+    http://stackoverflow.com/questions/2304863/how-to-write-a-good-readme
+    http://blog.thefrontiergroup.com.au/2013/05/writing-a-good-readme/
+    https://robots.thoughtbot.com/how-to-write-a-great-readme
+    https://www.ctl.io/developers/blog/post/how-to-write-a-readme-worth-reading
+    http://www.wikihow.com/Write-a-Read-Me
+    http://docs.writethedocs.org/writing/beginners-guide-to-docs/
+  
+  - Comments are present and effectively explain longer code procedures.
+
+  Good job! Some notes about comments (you may already know this if I
+  reviewed one of your previous projects).
+
+  Remember that there are always three places where you should write
+  concise comments:
+
+  - File header comment
+  - Function header comment
+  - Inline or above line comment
+
+  File header comment
+  --------------------
+
+  You should write at least what the code in particular file should
+  do. You can also write your name, the date and why you wrote the
+  code.
+
+  Function header comment
+  -------------------------
+  This comment should provide information about the purpose of the
+  function. You should include at least the required parameters (if
+  any), the transformations, and the expected output
+
+  Inline (above line) comment
+  ----------------------------
+  You should write this type of comment in any part of your code you
+  feel that someone will not get what you are trying to achieve with
+  commented code.
+
+  In term of comments style, you can use
+
+  JSDoc,
+  YUIDoc,
+  Docco,
+  ESDoc,
+  Dokker,
+  or some other javascript documentation tool
+
+  Using comments containing JSDoc, programmers can add documentation
+  describing the application programming interface of the code they're
+  creating. This is then processed, by various tools, to produce
+  documentation in accessible formats like HTML and Rich Text Format.
+
+  Source
+
+  Finally, if you may require some inspiration or advice about what or
+  how to write better comments, you can check the following blog post:
+
+  http://www.hongkiat.com/blog/source-code-comment-styling-tips/
+
+  References
+
+  http://www.cs.utah.edu/~germain/PPS/Topics/commenting.html
+  http://stackoverflow.com/questions/6815903/what-is-the-correct-way-of-code-comments-in-javascript
+  https://www.thinkful.com/learn/javascript-best-practices-1/#Comment-as-Much-as-Needed-but-Not-More
+  https://github.com/airbnb/javascript#comments
+
+  Code is formatted with consistent, logical, and easy-to-read
+  formatting as described in the Udacity JavaScript Style Guide.
+
+  Good job!
+
+  (you may already know this if I reviewed one of your previous projects)
+
+  I recommend to use (if you still don't use it :smile:) special
+  services to validate your code on errors and warnings:
+
+  http://jshint.com/ (I prefer this one)
+  http://jslint.com/
+  http://eslint.org/
+
+  The best if you integrate them right into your text editor
+  (e.g. sublime or atom) or use in your grunt/gulp workflow (installing
+  instructions).
+
+  Also don't forget about code validation. My favorite tools are:
+  HTML Validation: https://validator.w3.org/
+  CSS Validation: https://jigsaw.w3.org/css-validator/
+
+

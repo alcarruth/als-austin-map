@@ -12,23 +12,23 @@
   </head>
 
   <body>
-    <div id="neighborhood-map">
+    <div id="neighborhood-map" class="neighborhood-map">
 
-      <div id="header"> 
-        <span id="title"> Al's Austin Map </span>
+      <div id="header" class="header"> 
+        <span id="title" class="title"> Al's Austin Map </span>
         {{{ menu_icon }}}
       </div>
 
-      <div id="menu-view"
+      <div id="menu-view" class="menu-view"
            data-bind="css: {'hidden': menu_View.hidden}"> 
 
-        <div id="search-box">
+        <div id="search-box" class="search-box">
           {{{ search_icon }}}
-          <input id="search-text-input"
+          <input id="search-text-input" class="search-text-input"
                  data-bind="textInput: search_Str">
         </div>
 
-        <div id="menu-list"
+        <div id="menu-list" class="menu-list"
              data-bind="foreach: { data: places, as: 'place' }">
           <div class="menu-list-item"
                data-bind="text: name, visible: place.visible, click: place.click, css: {'selected': place.selected}">
@@ -37,8 +37,8 @@
 
       </div>
 
-      <div id="info-view"> </div>
-      <div id="map-view"> </div>
+      <div id="info-view" class="info-view"> </div>
+      <div id="map-view" class="map-view"> </div>
 
     </div>
 

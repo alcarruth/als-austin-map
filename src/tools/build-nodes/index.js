@@ -29,7 +29,7 @@
   var Apply, Clean_CSS, CoffeeScript, HTML_Minified_Page, HTML_Page, HTML_Template, JavaScript, QueryURL, SVG, Source, StyleSheet, beautify, beautify_comments, coffee, fs, htmlmin, js_beautify, minify, mustache, render, uglify_js,
     bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  fs = require('fs');
+  fs = require('fs-extra');
 
   coffee = require('coffee-script');
 
@@ -52,6 +52,12 @@
       return s.replace(re, '*/\n');
     };
   })();
+
+
+  /*
+   * TODO: How much of the Udacity Style Guide compliance
+   *       might I be able to automate here?
+   */
 
   beautify = {
     js: function(x) {
@@ -93,6 +99,13 @@
       return x;
     }
   };
+
+
+  /*
+   * TODO:
+   * I need some utitlity element tag functions here that can automate
+   * properties, e.g. 'async' property for a <script> tag
+   */
 
 
   /* Simple object render */
@@ -515,14 +528,37 @@
   QueryURL = (function() {
 
     /* constructor() */
-    function QueryURL(base_url, query) {
+    function QueryURL(base_url, query, options1) {
       this.base_url = base_url;
-      this.query = query != null ? query : {};
+      this.query = query;
+      this.options = options1;
       this.get = bind(this.get, this);
+      this.query = this.query || {};
+      this.options = this.options || {};
       this.js = {
         ref: (function(_this) {
           return function() {
-            return render.js.ref(_this.get());
+            var k, obj, s, v;
+            obj = (function() {
+              var ref, results;
+              ref = this.options;
+              results = [];
+              for (k in ref) {
+                v = ref[k];
+                results.push({
+                  k: v
+                });
+              }
+              return results;
+            }).call(_this);
+            obj.src = _this.get();
+            s = '<script';
+            for (k in obj) {
+              v = obj[k];
+              s += ' ' + String(k) + '="' + String(v) + '"';
+            }
+            s += '> </script>\n';
+            return s;
           };
         })(this)
       };

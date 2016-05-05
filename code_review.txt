@@ -1,0 +1,72 @@
+
+
+
+
+  "Two clicks is not intuitive decision. To improve usability try to
+   refactor you code to show info after the first one."
+
+   Easy change from:
+
+      @show_info = ko.computed(=> @state() > 2)
+      @state([1,2,3,2][@state()])
+
+      @show_info = ko.computed(=> @state() > 1)
+      @state([1,2,1][@state()])
+
+
+
+CODE REVIEW
+===========
+
+
+
+neighborhood_map.js
+--------------------
+  - missing semi-colons
+    Artifact from coffee-script removal process.
+
+
+
+
+style.css
+----------
+  - one selector per line
+    Artifact from coffee-script removal process.
+  - need lowercase color names
+
+
+
+
+README.md
+-----------
+
+  "As an enhancement, consider adding a live link with Github Pages so
+  your users don't have to download all of your Code to check out your
+  awesome work!"
+
+  ***************************************************************************
+  On the master branch I have links to what I think is some awesome work.
+  Unfortunately almost all of my awesome work has been removed from this
+  decaf branch in order to be accepted for review by Udacity.  I won't be
+  showing this branch to anybody to show off my work.
+  ***************************************************************************
+
+
+
+
+
+wikipedia_api.js  handle_Timeout()
+-----------------------------------
+
+  "Actually console is not a good place for errors output. Users usually
+  don't now about console and don't look in it."
+
+  ***************************************************************************
+  As stated in the comments, this is only a default timeout function
+  rovided as a convenience for use with the Wikipedia class.  But if
+  you look at the actual call to the wikipedia.openSearch() method in
+  the Info_View class, you'd see that an error callback is provided so
+  that the default timeout method is not used.  And if you were to
+  test this by running the app, you'd see an error message in the
+  InfoWindow, styled as indicated in style.css.
+  ***************************************************************************
