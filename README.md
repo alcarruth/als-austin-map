@@ -83,7 +83,9 @@ requirements and JSHint.
 
 All CoffeeScript code has been deleted from this branch of the repository
 but you can see some of it in 
-[`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee).
+[`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee).  I think that much of the CoffeeScript code, when properly 
+written, reads much better than the corresponding JavaScript.  For instance
+compare the constructor for the `Place` class in [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee) with the same constructor in [`neighborhood_map.js`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/decaf/src/js/neighborhood_map.js).
 
 It is my belief that this produced much more comprehensible code than
 using JavaScript straight away.  CoffeeScript offers a clean object
