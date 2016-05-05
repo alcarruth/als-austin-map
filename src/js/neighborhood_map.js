@@ -82,6 +82,10 @@
             });
         }
 
+        /**
+         * method init()
+         * used as callback in async google maps request
+         */
         Map_View.prototype.init = function() {
             this.map = new google.maps.Map(this.map_Element, {
                 center: {
@@ -96,6 +100,11 @@
             return this.app.map_Ready();
         };
 
+        /**
+         * method error()
+         * used as error callback in async google maps request
+         * @param (error) err - the returned error value
+         */
         Map_View.prototype.error = function(err) {
             return window.alert("Google Maps is currently unavailable");
         };
@@ -282,22 +291,32 @@
             this.loc = obj.loc;
             this.name = ko.observable(obj.name);
             this.wikipedia_Title = obj.wikipedia_title;
+
+            /* state ranges over [0,1,2] */
             this.state = ko.observable(1);
+
+            /* hidden if state == 0 */
             this.hidden = ko.computed((function(_this) {
                 return function() {
                     return _this.state() === 0;
                 };
             })(this));
+
+            /* visible if state > 0 */
             this.visible = ko.computed((function(_this) {
                 return function() {
                     return _this.state() > 0;
                 };
             })(this));
+
+            /* selected if state > 1 */
             this.selected = ko.computed((function(_this) {
                 return function() {
                     return _this.state() > 1;
                 };
             })(this));
+
+            /* show info_Window if state > 1 */
             this.show_info = ko.computed((function(_this) {
                 return function() {
                     return _this.state() > 1;
@@ -305,6 +324,11 @@
             })(this));
         }
 
+        /*
+         *  method map_Ready()
+         *  map_Ready() is called from this.app.map_Ready() which is used as
+         *  a callback for the async google maps request.
+         */
         Place.prototype.map_Ready = function() {
             this.marker_View = new Marker_View(this, this.app.map_View);
             return this.info_View = new Info_View(this, this.app.map_View, this.marker_View);
@@ -379,7 +403,9 @@
 
 
         /**
-         * method map_Ready
+         *  method map_Ready()
+         *  map_Ready() is used as a callback for the google maps request.
+         *  see class Map_View above.
          */
         Neighborhood_Map.prototype.map_Ready = function() {
             var i, len, place, ref, results;
@@ -394,8 +420,8 @@
 
 
         /**
-         * method init
-         * @param {JSON} places_JSON - a json string representing an array of simple place objects
+         *  method init()
+         *  @param {JSON} places_JSON - a json string representing an array of simple place objects
          */
         Neighborhood_Map.prototype.init = function(places_JSON) {
             var i, len, obj, ref, results;
@@ -431,6 +457,10 @@
 
     })();
 
+    /*
+     *  Just the one global is defined here.  From neighborhood_map you can
+     *  browse (in the console) to all of the objects which are part of this app.
+     */
     if (typeof window !== "undefined" && window !== null) {
         neighborhood_Map = new Neighborhood_Map();
         neighborhood_Map.init(austin_Places_JSON);
