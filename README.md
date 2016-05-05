@@ -19,7 +19,7 @@ $ node src/tools/build.js
 ```
 
 This will build the project files and install them in the `dist`
-subdirectory.  A simple server is included in the file `serve` which
+subdirectory.  A simple server is included which
 can be run as follows:
 
 ```
@@ -29,16 +29,18 @@ $ node src/tools/serve.js
 Now point your browser to
 [`http://localhost:8080/index.html`](http://localhost:8080/index.html).
 
-Also, to see different versions of the app which are produced by the
-build command, have a look at
-[`index_coffee.html`](http://localhost:8080/index_coffee.html) and
+The build command also produces two other `index_*.html` files:
+[`index_inline.html`](http://localhost:8080/index_inline.html) and
 [`index_min.html`](http://localhost:8080/index_min.html).  These
-demonstrate the flexibility of the build approach used.
+demonstrate the flexibility of the build approach used. (In the master
+branch the build command also produces an `index_coffee.html`)  All of
+these `index*.html` files are of course functionally identical and they
+are all produced by the single build command.
 
 
 ### Project Overview and Usage
 
-The title for the website is "Al's Austin Map".  It starts with a list
+The title for the website is "Al's Austin Map".  It starts with a JSON list
 of about 20 locations in Austin, TX (the model) and utilizes the
 [Google Maps API](https://developers.google.com/maps/) and the
 [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page) to
