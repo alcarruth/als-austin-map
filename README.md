@@ -49,9 +49,9 @@ Clicking on either a marker or the menu item for a location will have
 exactly the same effect, as the clicks are handled by the same
 `click()` method for the associated place.
 
-The first click will "select" the place, change the color of the
-marker and the appearance of the menu item.  Clicking a second time
-will trigger an asynchronous JSONP request to wikipedia to get some
+A click will "select" the place, change the color of the
+marker and the appearance of the menu item and trigger an asynchronous 
+JSONP request to wikipedia to get some
 basic information about the place.  Once this async request is
 fulfilled a `callback` function pops up a google maps `InfoWindow`
 containing the received information.
@@ -79,7 +79,11 @@ This site was built using [CoffeeScript](http://coffeescript.org/),
 both for generation of the javascript and for the build process.  Care
 was taken to ensure that meaningful comments survived the compilation
 process intact and that the produced JavaScript satisfied the style
-requirements and JSHint.
+requirements and JSHint. 
+
+All CoffeeScript code has been deleted from this branch of the repository
+but you can see some of it in 
+[`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee).
 
 It is my belief that this produced much more comprehensible code than
 using JavaScript straight away.  CoffeeScript offers a clean object
