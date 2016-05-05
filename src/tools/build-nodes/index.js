@@ -26,7 +26,7 @@
  */
 
 (function() {
-  var Apply, Clean_CSS, CoffeeScript, HTML_Minified_Page, HTML_Page, HTML_Template, JavaScript, QueryURL, SVG, Source, StyleSheet, beautify, beautify_comments, coffee, fs, htmlmin, js_beautify, minify, mustache, render, uglify_js,
+  var Apply, Clean_CSS, CoffeeScript, HTML_Minified_Page, HTML_Page, HTML_Template, JavaScript, JavaScriptLib, QueryURL, SVG, Source, StyleSheet, beautify, beautify_comments, coffee, fs, htmlmin, js_beautify, minify, mustache, render, uglify_js,
     bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   fs = require('fs-extra');
@@ -425,6 +425,7 @@
       this.dir = dir;
       this.make = bind(this.make, this);
       this.js = new Source(this.name, this.dir, 'js', 'min_js');
+      this.js_min = new Apply(this.name, minify.js, this.js, this.dir, 'min.js', 'min_js');
     }
 
 
@@ -434,10 +435,47 @@
       if (dest == null) {
         dest = 'dist/';
       }
-      return this.js.make(dest);
+      this.js.make(dest);
+      return this.js_min.make(dest);
     };
 
     return JavaScript;
+
+  })();
+
+
+  /* Class JavaScriptLib */
+
+
+  /**
+   * A JavaScriptLib instance contains one caching node
+   * @constructor
+   * @param {string} name - the node's base name
+   * @param {string} dir - the file's directory
+   * @method {function} make - make both targets
+   */
+
+  JavaScriptLib = (function() {
+
+    /* constructor() */
+    function JavaScriptLib(name, dir) {
+      this.name = name;
+      this.dir = dir;
+      this.make = bind(this.make, this);
+      this.js = new Source(this.name, this.dir, 'js', 'min_js');
+    }
+
+
+    /* method make() */
+
+    JavaScriptLib.prototype.make = function(dest) {
+      if (dest == null) {
+        dest = 'dist/';
+      }
+      return this.js.make(dest);
+    };
+
+    return JavaScriptLib;
 
   })();
 
@@ -713,6 +751,7 @@
     Apply: Apply,
     CoffeeScript: CoffeeScript,
     JavaScript: JavaScript,
+    JavaScriptLib: JavaScriptLib,
     StyleSheet: StyleSheet,
     SVG: SVG,
     QueryURL: QueryURL,
