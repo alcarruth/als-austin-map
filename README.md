@@ -111,13 +111,13 @@ Marker_View object.  A number of Place properties are defined as
 knockout observables which are subscribed to by the Marker_View object
 and by the menu item element.
 
-A place has a knockout observable `state()` which ranges over [0,1,2,3]
+A place has a knockout observable `state()` which ranges over [0,1,2]
 and is interpreted as follows:
 
  - state = 0: place is hidden
  - state > 0: place is visible
  - state > 1: place is selected
- - state > 2: place's InfoWindow is shown
+ - state > 1: place's InfoWindow is shown
 
 These properties, hidden, visible, selected and infoShown are all
 defined as knockout computed observables.  Defining things this way
