@@ -86,24 +86,26 @@ but you can see some of it in
 [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee)
 I think that much of the CoffeeScript code, when properly 
 written, reads much better than the corresponding JavaScript.  For instance
-compare the constructor for the `Place` class in [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee#L199) with the same constructor in [`neighborhood_map.js`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/resubmit/src/js/neighborhood_map.js#L283)
+compare the constructor for the `Place` class in [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee#L199) with the same constructor in [`neighborhood_map.js`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/resubmit/src/js/neighborhood_map.js#L283).  Without comments the JavaScript code is fairly unintelligible, but the CoffeeScript code reads nearly
+as well as the JavaScript comments, making comments superfluous, in my opinion.
 
-It is my belief that this produced much more comprehensible code than
-using JavaScript straight away.  CoffeeScript offers a clean object
+CoffeeScript offers a clean object
 oriented syntax that encourages thinking about the problem at hand at
 a more abstract level, while avoiding some of the pitfalls of a pure
 JavaScript approach.
 
 In particular, I believe the use of an unbound `this` reference is bad
-mojo. If you have a look at the CoffeeScript in this project, note
+mojo. If you have a look at the [CoffeeScript in this project](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/tree/master/src/js), note
 that while constructors and a few simple functions are defined using
-the single arrow (`->`) all of the method definitions are defined
-using the double arrow (`=>`) which binds `this` to the instance of
+the thin arrow (`->`) all of the method definitions are defined
+using the fat arrow (`=>`) which binds `this` to the instance of
 the class being defined.
 
-The binding of a function to its data structure is one of the major
-tenets of object-oriented programming.  It is the difference between a
-function and a method.
+The binding of a function to a data structure is one of the major
+tenets of object-oriented programming and its introduction was a major
+event in the evolution of structured programming. This binding is what
+makes a function a method, and normal JavaScript programming throws all
+that out the window.
 
 ### Architecture
 
