@@ -292,7 +292,7 @@ class StyleSheet
  * @constructor
  * @param {string} name - the node's base name
  * @param {string} dir - the file's directory
- * @method {function} make - make target
+v * @method {function} make - make target
 ###
 class SVG
 

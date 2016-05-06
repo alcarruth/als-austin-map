@@ -43,34 +43,35 @@
       this.knockout = new bn.JavaScript('knockout-3.3.0', 'js');
       this.coffee_script = new bn.JavaScript('coffee-script', 'js');
       this.jsonp = new bn.CoffeeScript('jsonp', 'js');
+      this.google_maps_api = new bn.CoffeeScript('google_maps_api', 'js');
       this.wikipedia_api = new bn.CoffeeScript('wikipedia_api', 'js');
       this.austin_places = new bn.CoffeeScript('austin_places', 'js');
       this.neighborhood_map = new bn.CoffeeScript('neighborhood_map', 'js');
       this.index_template = new bn.HTML_Template('index', 'templates');
       this.index_js = new bn.HTML_Page('index', this.index_template, {
         styles: [this.style.css.ref()],
-        client_libs: [this.google_maps_api.js.ref(), this.knockout.js.ref()],
-        client_scripts: [this.jsonp.js.ref(), this.wikipedia_api.js.ref(), this.austin_places.js.ref(), this.neighborhood_map.js.ref()],
+        client_libs: [this.knockout.js.ref()],
+        client_scripts: [this.jsonp.js.ref(), this.wikipedia_api.js.ref(), this.google_maps_api.js.ref(), this.austin_places.js.ref(), this.neighborhood_map.js.ref()],
         menu_icon: [this.menu_icon.svg.inline()],
         search_icon: [this.search_icon.svg.inline()]
       });
       this.index_inline = new bn.HTML_Page('index_inline', this.index_template, {
         styles: [this.style.css.ref()],
-        client_libs: [this.google_maps_api.js.ref(), this.knockout.js.ref()],
-        client_scripts: [this.jsonp.js.inline(), this.wikipedia_api.js.inline(), this.austin_places.js.inline(), this.neighborhood_map.js.inline()],
+        client_libs: [this.knockout.js.ref()],
+        client_scripts: [this.jsonp.js.inline(), this.wikipedia_api.js.inline(), this.google_maps_api.js.inline(), this.austin_places.js.inline(), this.neighborhood_map.js.inline()],
         menu_icon: [this.menu_icon.svg.inline()],
         search_icon: [this.search_icon.svg.inline()]
       });
       this.index_min = new bn.HTML_Minified_Page('index_min', this.index_template, {
         styles: [this.style.css_min.inline()],
-        client_libs: [this.google_maps_api.js.ref(), this.knockout.js.ref()],
-        client_scripts: [this.jsonp.js_min.inline(), this.wikipedia_api.js_min.inline(), this.austin_places.js_min.inline(), this.neighborhood_map.js_min.inline()],
+        client_libs: [this.knockout.js.ref()],
+        client_scripts: [this.jsonp.js_min.inline(), this.wikipedia_api.js_min.inline(), this.google_maps_api.js.inline(), this.austin_places.js_min.inline(), this.neighborhood_map.js_min.inline()],
         menu_icon: [this.menu_icon.svg.inline()],
         search_icon: [this.search_icon.svg.inline()]
       });
       this.index_coffee = new bn.HTML_Page('index_coffee', this.index_template, {
         styles: [this.style.css.ref()],
-        client_libs: [this.google_maps_api.js.ref(), this.knockout.js.ref(), this.coffee_script.js.ref()],
+        client_libs: [this.knockout.js.ref(), this.coffee_script.js.ref()],
         client_scripts: [this.jsonp.coffee.ref(), this.wikipedia_api.coffee.ref(), this.austin_places.coffee.ref(), this.neighborhood_map.coffee.ref()],
         menu_icon: [this.menu_icon.svg.inline()],
         search_icon: [this.search_icon.svg.inline()]
@@ -108,7 +109,7 @@
         dest = 'dist';
       }
       fs.copySync('src/images/favicon.ico', dest + '/images/favicon.ico');
-      tasks = [this.jsonp, this.wikipedia_api, this.austin_places, this.neighborhood_map, this.knockout, this.coffee_script, this.style, this.menu_icon, this.search_icon, this.index_coffee, this.index_js, this.index_inline, this.index_min];
+      tasks = [this.jsonp, this.wikipedia_api, this.google_maps_api, this.austin_places, this.neighborhood_map, this.knockout, this.coffee_script, this.style, this.menu_icon, this.search_icon, this.index_coffee, this.index_js, this.index_inline, this.index_min];
       start = Date.now();
       for (i = 0, len = tasks.length; i < len; i++) {
         task = tasks[i];
