@@ -72,7 +72,7 @@
       this.index_coffee = new bn.HTML_Page('index_coffee', this.index_template, {
         styles: [this.style.css.ref()],
         client_libs: [this.knockout.js.ref(), this.coffee_script.js.ref()],
-        client_scripts: [this.jsonp.coffee.ref(), this.wikipedia_api.coffee.ref(), this.austin_places.coffee.ref(), this.neighborhood_map.coffee.ref()],
+        client_scripts: [this.jsonp.coffee.ref(), this.wikipedia_api.coffee.ref(), this.google_maps_api.js.ref(), this.austin_places.coffee.ref(), this.neighborhood_map.coffee.ref()],
         menu_icon: [this.menu_icon.svg.inline()],
         search_icon: [this.search_icon.svg.inline()]
       });

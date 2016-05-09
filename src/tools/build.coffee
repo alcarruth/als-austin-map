@@ -126,6 +126,7 @@ class Neighborhood_Map_App
             client_scripts: [
                 @jsonp.coffee.ref()
                 @wikipedia_api.coffee.ref()
+                @google_maps_api.js.ref()
                 @austin_places.coffee.ref()
                 @neighborhood_map.coffee.ref()
             ]
