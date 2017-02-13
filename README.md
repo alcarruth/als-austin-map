@@ -1,5 +1,5 @@
 
-## Udacity FEND Project 7 -1 Neighborhood Map
+## Udacity FEND Project 7 Neighborhood Map
 
 ### Quick Start
 
@@ -85,10 +85,10 @@ requirements and JSHint.
 
 All CoffeeScript code has been deleted from this branch of the repository
 but you can see some of it in 
-[`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee)
+[`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/master/src/js/neighborhood_map.coffee)
 I think that much of the CoffeeScript code, when properly 
 written, reads much better than the corresponding JavaScript.  For instance
-compare the constructor for the `Place` class in [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/neighborhood_map.coffee#L199) with the same constructor in [`neighborhood_map.js`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/resubmit/src/js/neighborhood_map.js#L283).  Without comments the JavaScript code is fairly unintelligible, but the CoffeeScript code reads nearly
+compare the constructor for the `Place` class in [`neighborhood_map.coffee`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/master/src/js/neighborhood_map.coffee#L199) with the same constructor in [`neighborhood_map.js`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/resubmit/src/js/neighborhood_map.js#L283).  Without comments the JavaScript code is fairly unintelligible, but the CoffeeScript code reads nearly
 as well as the JavaScript comments, making comments superfluous, in my opinion.
 
 CoffeeScript offers a clean object
@@ -97,7 +97,7 @@ a more abstract level, while avoiding some of the pitfalls of a pure
 JavaScript approach.
 
 In particular, I believe the use of an unbound `this` reference is bad
-mojo. If you have a look at the [CoffeeScript in this project](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/tree/master/src/js), note
+mojo. If you have a look at the [CoffeeScript in this project](https://github.com/alcarruth/frontend-p7-neighborhood-map/tree/master/src/js), note
 that while constructors and a few simple functions are defined using
 the thin arrow (`->`) all of the method definitions are defined
 using the fat arrow (`=>`) which binds `this` to the instance of
@@ -162,9 +162,9 @@ it to do what I wanted.
 So I tried writing a build script in CoffeeScript and had more
 success.  Eventually I separated the project specific build code from
 the more general stuff.  The results can be seen in the file
-[`build`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/build)
+[`build`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/master/build)
 in the root directory, and the general code in
-[`src/tools/build-nodes`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/tools/build-nodes/index.coffee). Perhaps
+[`src/tools/build-nodes`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/master/src/tools/build-nodes/index.coffee). Perhaps
 I can break this out into its own repository.
 
 
@@ -178,7 +178,7 @@ great but jQuery is not a small library and I didn't feel right
 loading it just for this one function.
 
 So, I rolled my own, object-oriented, solution which can be found in
-[`source/js/jsonp.coffee`](https://github.com/alcarruth/frontend-p7-1-neighborhood-map/blob/master/src/js/jsonp.coffee)
+[`source/js/jsonp.coffee`](https://github.com/alcarruth/frontend-p7-neighborhood-map/blob/master/src/js/jsonp.coffee)
 I believe it to be simple, general and intelligible.  (And now it's easy to
 see how JSONP actually works!)
 
