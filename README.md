@@ -12,8 +12,8 @@ If these requirements are satisfied, you can download and build the
 Neighborhood Maps App as follows:
 
 ```
-$ git clone https://github.com/alcarruth/frontend-p7-1-neighborhood-map
-$ cd frontend-p7-1-neighborhood-map
+$ git clone https://github.com/alcarruth/frontend-p7-neighborhood-map
+$ cd frontend-p7-neighborhood-map
 $ npm install
 $ node src/tools/build.js
 ```
