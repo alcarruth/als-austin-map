@@ -86,12 +86,12 @@
         dir = 'dist';
       }
       if (port == null) {
-        port = '8080';
+        port = '8087';
       }
       connect = require('connect');
       serveStatic = require('serve-static');
       return connect().use(serveStatic(dir)).listen(port, function() {
-        return console.log('Server running on ' + String(8080) + '...');
+        return console.log('Server running on ' + String(port) + '...');
       });
     };
 
