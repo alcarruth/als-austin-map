@@ -1,44 +1,11 @@
 
 ## Udacity FEND Project 7 Neighborhood Map
 
-### Quick Start
-
-This project requires the following programs to build from scratch:
-
- - [`nodejs`](https://nodejs.org/en/) - version 4.2.1 or greater.
- - [`npm`](https://www.npmjs.com/) - version 3.5.3 or greater.
-
-If these requirements are satisfied, you can download and build the
-Neighborhood Maps App as follows:
-
-```
-$ git clone https://github.com/alcarruth/als-austin-map
-$ cd frontend-als-austin-map
-$ npm install
-$ node src/tools/build.js
-```
-
-This will build the project files and install them in the `dist`
-subdirectory.  A simple server is included which
-can be run as follows:
-
-```
-$ node src/tools/serve.js
-```
-
-Now point your browser to
-[`http://localhost:8080/index.html`](http://localhost:8080/index.html).
-
-The build command also produces two other `index_*.html` files:
-[`index_inline.html`](http://localhost:8080/index_inline.html) and
-[`index_min.html`](http://localhost:8080/index_min.html).  These
-demonstrate the flexibility of the build approach used. (In the master
-branch the build command also produces an `index_coffee.html`)  All of
-these `index*.html` files are of course functionally identical and they
-are all produced by the single build command.
 
 
 ### Project Overview and Usage
+
+See it in action at [https://alcarruth.net/projects/austin_map/dist/](https://alcarruth.net/projects/austin_map/dist/).
 
 The title for the website is "Al's Austin Map".  It starts with a JSON list
 of about 20 locations in Austin, TX (the model) and utilizes the
@@ -74,6 +41,42 @@ At the top of the menu there is a magnifying glass icon and a text
 entry field.  Any text entered here is used to filter the locations as
 you type and update the menu and map appropriately, displaying only
 those locations containing the typed text.
+
+### Quick Start
+
+This project requires the following programs to build from scratch:
+
+ - [`nodejs`](https://nodejs.org/en/) - version 4.2.1 or greater.
+ - [`npm`](https://www.npmjs.com/) - version 3.5.3 or greater.
+
+If these requirements are satisfied, you can download and build the
+Neighborhood Maps App as follows:
+
+```
+$ git clone https://github.com/alcarruth/als-austin-map
+$ cd frontend-als-austin-map
+$ npm install
+$ node src/tools/build.js
+```
+
+This will build the project files and install them in the `dist`
+subdirectory.  A simple server is included which
+can be run as follows:
+
+```
+$ node src/tools/serve.js
+```
+
+Now point your browser to
+[`http://localhost:8080/index.html`](http://localhost:8080/index.html).
+
+The build command also produces two other `index_*.html` files:
+[`index_inline.html`](http://localhost:8080/index_inline.html) and
+[`index_min.html`](http://localhost:8080/index_min.html).  These
+demonstrate the flexibility of the build approach used. (In the master
+branch the build command also produces an `index_coffee.html`)  All of
+these `index*.html` files are of course functionally identical and they
+are all produced by the single build command.
 
 ### CoffeeScript
 
