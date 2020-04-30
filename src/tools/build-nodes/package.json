@@ -13,11 +13,10 @@
     "coffee-script": "^1.10.0",
     "fs-extra": "^0.30.0",
     "htmlmin": "0.0.6",
-    "minify": "^2.0.8",
+    "js-beautify": "^1.6.2",
+    "minify": "^5.1.1",
     "mustache": "^2.2.1",
-    "uglify-js": "^2.6.2",
-    "js-beautify": "^1.6.2"
+    "uglify-js": "^2.6.2"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

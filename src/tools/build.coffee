@@ -1,4 +1,4 @@
-#!node_modules/.bin/coffee
+#!/usr/bin/env coffee
 
 ###
  * source: build
