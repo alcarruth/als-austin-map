@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "zeus.armazilla.net:/opt/git/udacity/frontend-projects/frontend-p7-1-neighborhood-map"
+    "url": "https://github.com/alcarruth/als-austin-map.git"
   },
   "author": "Al Carruth",
   "license": "ISC"
