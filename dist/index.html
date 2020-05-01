@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Austin Places Map">
+    <meta name="author" content="Al Carruth">
+    <title> Al's Austin Map </title>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/knockout.js"></script>
+    <script src="js/neighborhood-map.js"></script>
+    <script src="js/als-austin-map.js"></script>
+  </head>
+
+  <body>
+    <div id="neighborhood-map" class="neighborhood-map">
+
+      <div id="header" class="header"> 
+        <span id="title" class="title"> Al's Austin Map </span>
+        <img src="images/hamburger_icon.svg" id="menu-button" alt="Menu"
+             data-bind="click: menu_View.toggle">
+      </div>
+
+      <div id="menu-view" class="menu-view"
+           data-bind="css: {'hidden': menu_View.hidden}"> 
+        <div id="search-box" class="search-box">
+          <img src="images/search_icon.svg" class="search-icon" alt="Search">
+          <input id="search-text-input" class="search-text-input"
+                 data-bind="textInput: search_Str">
+        </div>
+        <div id="menu-list" class="menu-list"
+             data-bind="foreach: { data: places, as: 'place' }">
+          <div class="menu-list-item"
+               data-bind="text: name, visible: place.visible, click: place.click, css: {'selected': place.selected}">
+          </div>
+        </div>
+      </div>
+
+      <div id="info-view" class="info-view"> </div>
+      <div id="map-view" class="map-view"> </div>
+
+    </div>
+  </body>
+</html>
