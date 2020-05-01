@@ -1,4 +1,4 @@
-
+#!/usr/bin/env/coffee
 
 ### austin_places is an array of simple place objects. ###
 austin_Places = [

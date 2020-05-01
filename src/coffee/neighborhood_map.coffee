@@ -1,328 +1,4 @@
-
-
-### austin_places is an array of simple place objects. ###
-austin_Places = [
-  {
-    name: 'Auditorium Shores',
-    wikipedia_title: 'Auditorium Shores',
-    page_id: 18928372,
-    loc: { lat: 30.2627167, lng: -97.7515303 }
-    },
-  {
-    name: 'Barton Springs Pool',
-    wikipedia_title: 'Barton Springs Pool',
-    page_id: 994682,
-    loc: { lat: 30.264293, lng: -97.771109 }
-    },
-  {
-    name: 'Deep Eddy Pool',
-    wikipedia_title: 'Deep Eddy Pool',
-    page_id: 3890635,
-    loc: { lat: 30.276515, lng: -97.7732058 }
-    },
-  {
-    name: 'Mount Bonnell',
-    wikipedia_title: 'Mount Bonnell',
-    page_id: 1238172,
-    loc: { lat: 30.3214561, lng: -97.7732058 }
-    },
-  {
-    name: 'Zilker Park',
-    wikipedia_title: 'Zilker Park',
-    page_id: 165971,
-    loc: { lat: 30.2669624, lng: -97.772859 }
-    },
-  {
-    name: 'Driskill Hotel',
-    wikipedia_title: 'Driskill Hotel',
-    page_id: 4064917,
-    loc: { lat: 30.2681619, lng: -97.7416996 }
-    },
-  {
-    name: 'Texas State Capitol',
-    wikipedia_title: 'Texas State Capitol',
-    page_id: 503403,
-    loc: { lat: 30.2746652, lng: -97.7403505 }
-    },
-  {
-    name: 'Texas Governor\'s Mansion',
-    wikipedia_title: 'Texas Governor\'s Mansion',
-    page_id: 5723219,
-    loc: { lat: 30.2727527, lng: -97.7430868 }
-    },
-  {
-    name: 'Treaty Oak',
-    wikipedia_title: 'Treaty Oak (Austin, Texas)',
-    page_id: 438722,
-    loc: { lat: 30.2712406, lng: -97.7555901 }
-    },
-  {
-    name: 'University of Texas',
-    wikipedia_title: 'University of Texas at Austin',
-    page_id: 32031,
-    loc: { lat: 30.2849185, lng: -97.7340567 }
-    },
-  {
-    name: 'French Legation',
-    wikipedia_title: 'French Legation',
-    page_id: 5910542,
-    loc: { lat: 30.2670255, lng: -97.7319951 }
-    },
-  {
-    name: 'Antone\'s',
-    wikipedia_title: 'Clifford Antone',
-    page_id: 5277250,
-    loc: { lat: 30.2660481, lng: -97.7425889 }
-    },
-  {
-    name: 'Austin City Limits',
-    wikipedia_title: 'Austin City Limits',
-    page_id: 174839,
-    loc: { lat: 30.2655623, lng: -97.7473038 }
-    },
-  {
-    name: 'Blanton Museum of Art',
-    wikipedia_title: 'Blanton Museum of Art',
-    page_id: 4339388,
-    loc: { lat: 30.2810198, lng: -97.7374621 }
-    },
-  {
-    name: 'Bullock Texas State History Museum',
-    wikipedia_title: 'Bullock Texas State History Museum',
-    page_id: 6031876,
-    loc: { lat: 30.2802905, lng: -97.7390746 }
-    },
-  {
-    name: 'Elisabet Ney Museum',
-    wikipedia_title: 'Elisabet Ney Museum',
-    page_id: 4657074,
-    loc: { lat: 30.30668, lng: -97.7262735 }
-    },
-  {
-    name: 'Harry Ransom Center',
-    wikipedia_title: 'Harry Ransom Center',
-    page_id: 946273,
-    loc: { lat: 30.2843406, lng: -97.7412267 }
-    },
-  {
-    name: 'LBJ Presidential Library',
-    wikipedia_title: 'Lyndon Baines Johnson Library and Museum',
-    page_id: 1724361,
-    loc: { lat: 30.2858787, lng: -97.7292372 }
-    },
-  {
-    name: 'Mexic-Arte Museum',
-    wikipedia_title: 'Mexic-Arte Museum',
-    page_id: 6707654,
-    loc: { lat: 30.26684, lng: -97.7428 }
-    },
-  {
-    name: 'O. Henry Museum',
-    wikipedia_title: 'William Sidney Porter House',
-    page_id: 9869149,
-    loc: { lat: 30.2656736, lng: -97.7391424 }
-    },
-  {
-    name: 'South Austin Museum of Popular Culture',
-    wikipedia_title: 'South Austin Museum of Popular Culture',
-    page_id: 15103570,
-    loc: { lat: 30.2517604, lng: -97.7650138 }
-    }
-]
-
-
-
-### Class JSONP_Controller ###
-###*
- * A JSONP_Controller instance can be used to make a jsonp request to an api server.
- * @constructor
- * @param {string} base_URL - the base url for the server
- * @param {string} cb_Prefix - used in naming the jsonp callback function
-###
-class JSONP_Controller
-
-  ### constructor ###
-  constructor: (@base_URL, @cb_Prefix) ->
-    @cb_Prefix = @cb_Prefix || 'jsonp_Callback_'
-    ### seq_ID is appended to the cb_Prefix ###
-    @seq_ID = 0
-    ### collect the requests for later inspection (maybe?) ###
-    @requests = []
-    
-  ###*
-   * method make_Request()
-   * returns a JSONP_Request object
-   * @param {object} obj - query, success, error, msec
-  ###
-  make_Request: (obj) =>
-
-    ### the call back function name, unique to this call ###
-    cb_Name = @cb_Prefix + @seq_ID++
-    
-    ### ADD 'CALLBACK' TO provided query object ###
-    obj.query.callback = cb_Name
-
-    ### construct the url from the base_URL and the query object ###
-    url = @base_URL
-    keys = Object.keys(obj.query)
-    url += (key+'='+obj.query[key] for key in keys).join('&')
-    url = encodeURI(url)
-
-    request = new JSONP_Request(obj.success, obj.error, obj.msec, cb_Name, url)
-    @requests.push(request)
-    return request
-
-
-
-
-
-### Class JSONP_Request ###
-###*
- * A JSONP_Request object is used to make a jsonp request to an api server.
- * @constructor
- * @param {function} success - executed upon successful jsonp response
- * @param {function} error - executed upon timeout
- * @param {int} msec - timeout delay in milliseconds
- * @param {string} cb_Name 
- * @param {string} url - the url for jsonp call
-###
-class JSONP_Request
-
-  ### constructor ###
-  constructor: (@success, @error, @msec, @cb_Name, @url) ->
-    
-    ### the parent node to be ###
-    @head = document.getElementsByTagName('head')[0]
-    
-    ### the script element that enables this request ###
-    @elt = document.createElement('script')
-    @elt.type = 'text/javascript'
-    @elt.async = true
-    @elt.src = @url
-
-    ### the below might be useful later, idk ###
-    @elt.id = @cb_Name
-    @elt.className = 'jsonp-request'
-    @elt.request = this
-
-  ### method callback() ###
-  callback: (data) =>
-    window.clearTimeout(@timeout)
-    @success(data)
-
-  ### method send() ###
-  send: =>
-    window[@cb_Name] = @callback
-    @timeout = window.setTimeout(@error, @msec)
-    ### appending @elt triggers the call to fetch the jsonp script ###
-    @head.appendChild(@elt)
-
-
-
-
-
-### Class Google_Maps ###
-###*
- * A Google_Maps instance has methods for simple queries and searches
- * using the google maps javascript api
- * @constructor
- * @param {String} api_User_Agent - a string identifying the app to wikipedia
-###
-class Google_Maps
-
-  ### constructor ###
-  constructor: (@key) ->
-    @jsonp = new JSONP_Controller('https://maps.googleapis.com/maps/api/js?')
-
-  ###*
-   * method handle_timeout()
-   * a default timeout error handler for calls to method get() above
-   * @param {Object} err - the error object
-  ###
-  handle_Timeout: (err) =>
-    msg = "Google Maps unavailable."
-    console.log(msg)
-    console.log(err)
-
-  ### method get() ###
-  get: (obj, options) =>
-    options = options || {}
-    options.key = @key
-    request = @jsonp.make_Request({
-      async: true
-      defer: true
-      query: options
-      success: obj.success
-      error: obj.error || @handle_Timeout
-      msec: obj.msec || 3000
-    })
-    request.send()
-
-
-
-
-
-### Class Wikipedia ###
-###*
- * A Wikipedia instance has methods for simple queries and searches
- * using the wikipedia api.
- * @constructor
- * @param {String} api_User_Agent - a string identifying the app to wikipedia
-###
-class Wikipedia
-
-  ### constructor ###
-  constructor: (@api_User_Agent) ->
-    @jsonp = new JSONP_Controller('https://en.wikipedia.org/w/api.php?')
-
-  ###*
-   * method handle_timeout()
-   * a default timeout error handler for calls to method get() above
-   * @param {Object} err - the error object
-  ###
-  handle_Timeout: (err) =>
-    msg = "Wikipedia search results unavailable."
-    console.log(msg)
-    console.log(err)
-
-  ### method get() ###
-  get: (obj, query) =>
-    request = @jsonp.make_Request({
-      query: query
-      success: obj.success
-      error: obj.error || @handle_Timeout
-      msec: obj.msec || 3000
-    })
-    request.send()
-
-  ###*
-   * method query()
-   * performs the ajax request for a 'query' action
-   * @param {Object} obj - a query string object
-  ###
-  query: (obj) =>
-    @get(obj, { 
-      action: 'query'
-      format: 'json'
-      prop: 'revisions'
-      rvprop: 'content'
-      titles: obj.title
-    })
-
-  ###*
-   * method openSearch()
-   * performs the ajax request for an 'opensearch' action
-   * @param {Object} obj - a query string object
-  ###
-  openSearch: (obj) =>
-    @get(obj, {
-      action: 'opensearch'
-      format: 'json'
-      search: obj.search_Str
-    })
-
-
-
+#!/usr/bin/env/coffee
 
 
 ### Class Menu_View ###
@@ -344,9 +20,6 @@ class Menu_View
    * toggles the visibility of the menu
   ###
   toggle: => @hidden(not @hidden())
-
-
-
 
 
 ### Class Map_View ###
@@ -379,9 +52,6 @@ class Map_View
       
   error: (err) =>
     window.alert("Google Maps is currently unavailable")
-
-
-
 
 
 ### Class Marker_View ###
@@ -423,8 +93,6 @@ class Marker_View
     else
       @marker.setIcon(marker_Icon)
       @marker.setZIndex(1000)
-
-
 
 
 ### Class Info_View ###
@@ -498,8 +166,6 @@ class Info_View
 
 
 
-
-
 ### Class Place ###
 ###*
  * A Place is part of the view model.  It is constructed from a simple object
@@ -557,8 +223,6 @@ class Place
       @state(0)
 
 
-
-
 ### Class Neighborhood_Map ###
 ###*
  * An instance of class Neighborhood_Map is the main app.
@@ -568,8 +232,8 @@ class Neighborhood_Map
 
   ### constructor ###
   constructor: ->
-    @wikipedia = new Wikipedia('Map of Austin places')
-    @google_Maps = new Google_Maps("AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo")
+    @wikipedia = new Wikipedia_API('Map of Austin places')
+    @google_Maps = new Google_Maps_API("AIzaSyBjtVDpeVL8JzhYqCXt8d6E3bRanaNCXEo")
     @places = ko.observableArray([])
     @menu_View = new Menu_View(this)
     @map_View = new Map_View(this)
@@ -602,6 +266,7 @@ class Neighborhood_Map
     expr = RegExp(pat,'i')
     for place in @places()
       place.display(expr.test(place.name()))
+
 
 
 init = ->

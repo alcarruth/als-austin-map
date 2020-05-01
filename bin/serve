@@ -1,5 +1,0 @@
-#!/usr/bin/env coffee
-#
-
-require('./build').app.serve()
-
