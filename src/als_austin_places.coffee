@@ -1,7 +1,7 @@
 #!/usr/bin/env/coffee
 
 ### austin_places is an array of simple place objects. ###
-als_Austin_Places = [
+als_austin_places = [
   {
     name: 'Auditorium Shores',
     wikipedia_title: 'Auditorium Shores',
@@ -129,6 +129,3 @@ als_Austin_Places = [
     loc: { lat: 30.2517604, lng: -97.7650138 }
     }
 ]
-
-if window?
-  window.als_Austin_Places = als_Austin_Places

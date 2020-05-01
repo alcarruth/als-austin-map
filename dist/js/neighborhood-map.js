@@ -582,9 +582,6 @@
 
   if (typeof window !== "undefined" && window !== null) {
     window.Neighborhood_Map = Neighborhood_Map;
-    console.log("window.Neighborhood_Map installed");
-  } else {
-    console.log("could not install window.Neighborhood_Map");
   }
 
 }).call(this);
