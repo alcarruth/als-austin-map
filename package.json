@@ -9,8 +9,8 @@
     "coffeescript": "^2.4.1",
     "js-beautify": "^1.11.0",
     "minify": "^5.1.1",
-    "uglify-js": "^3.9.1"
-    "neighborhood-map": "git+https://github.com/alcarruth/neighborhood-map.git#knockout",
+    "uglify-js": "^3.9.1",
+    "neighborhood-map": "git+https://github.com/alcarruth/neighborhood-map.git#knockout"
   },
   "scripts": {
     "build": "bin/build",

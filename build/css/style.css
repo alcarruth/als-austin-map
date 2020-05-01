@@ -94,7 +94,7 @@ body {
     border-color: #fff;
 }
 
-.menu-button {
+#menu-button {
     cursor: default;
     font-style: normal;
     border-color: #888;
@@ -193,7 +193,7 @@ body,
     font-size: large;
 }
 
-.menu-button {
+#menu-button {
     z-index: 2001;
     height: 20px;
     margin: 5px;
