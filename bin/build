@@ -1,0 +1,10 @@
+#!/bin/bash
+
+bin/clean
+
+coffee -cM -o dist/js src/coffee/*.coffee
+cp -r src/js dist/
+cp -r src/css dist/
+cp -r src/images dist/
+
+cp src/index.html dist/

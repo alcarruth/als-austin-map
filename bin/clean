@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -r dist
+mkdir -p dist/css dist/js dist/images
+
