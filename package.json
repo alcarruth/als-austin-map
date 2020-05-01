@@ -1,25 +1,25 @@
 {
-  "name": "frontend-p7-1-neighborhood-map",
+  "name": "als-austin-map",
   "version": "1.0.0",
-  "description": "project for Udacity nanodegree",
+  "branch": "develop",
+  "description": "Al's interactive map of places in Austin, TX",
   "main": "build",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "coffeescript": "^2.4.1",
     "js-beautify": "^1.11.0",
     "minify": "^5.1.1",
     "uglify-js": "^3.9.1"
-  },
-  "devDependencies": {
-    "coffeescript": "^2.4.1",
-    "connect": "^3.4.1",
-    "serve-static": "^1.10.2"
+    "neighborhood-map": "git+https://github.com/alcarruth/neighborhood-map.git#knockout",
   },
   "scripts": {
+    "build": "bin/build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alcarruth/als-austin-map.git"
+    "url": "https://github.com/alcarruth/als-austin-map.git#develop"
   },
   "author": "Al Carruth",
-  "license": "ISC"
+  "license": "MIT"
 }
