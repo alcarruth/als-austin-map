@@ -2,4 +2,4 @@
 
 . bin/defs.bash
 
-mk_dist
+mk_all
