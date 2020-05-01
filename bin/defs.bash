@@ -6,7 +6,7 @@ function run() {
 }
 
 function clean() {
-    rm -r dist/ build/
+    rm -rf dist/ build/
     mkdir -p dist/css dist/js dist/images
     mkdir -p build/css build/js build/coffee build/images build/html
 }
@@ -24,7 +24,7 @@ function mk_build() {
     cp ../node_modules/neighborhood-map/dist/js/*.js js/
     cp ../node_modules/neighborhood-map/dist/css/*.css css
     cp ../node_modules/neighborhood-map/dist/images/* images
-    popd
+    popd > /dev/null
 }
 
 function mk_dist() {
