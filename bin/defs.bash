@@ -12,9 +12,9 @@ function clean() {
 }
 
 function mk_als_austin_places_js() {
-    cat src/als_austin_places.coffee src/init_map.coffee > build/coffee/als_austin_map.coffee
+    cat src/als_austin_places.coffee src/init_map.coffee > build/coffee/als-austin-map.coffee
     pushd build > /dev/null
-    coffee -c -o js/ coffee/als_austin_map.coffee
+    coffee -c -o js/ coffee/als-austin-map.coffee
     popd > /dev/null
 }
 
