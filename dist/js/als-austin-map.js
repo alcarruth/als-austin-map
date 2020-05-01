@@ -2,9 +2,9 @@
 (function() {
   //!/usr/bin/env/coffee
   /* austin_places is an array of simple place objects. */
-  var als_Austin_Places, init;
+  var als_austin_places, init;
 
-  als_Austin_Places = [
+  als_austin_places = [
     {
       name: 'Auditorium Shores',
       wikipedia_title: 'Auditorium Shores',
@@ -195,10 +195,6 @@
       }
     }
   ];
-
-  if (typeof window !== "undefined" && window !== null) {
-    window.als_Austin_Places = als_Austin_Places;
-  }
 
   //!/usr/bin/env coffee
   init = function() {
