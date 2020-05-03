@@ -129,4 +129,3 @@ als_austin_places = [
     loc: { lat: 30.2517604, lng: -97.7650138 }
     }
 ]
-
